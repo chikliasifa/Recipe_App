@@ -1,0 +1,587 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: black;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Navbar */
+.main-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.8rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  background: linear-gradient(90deg, #FF4C4C, #FF007F, #FF9A56, #FFC107, #FFEB3B, #A8E6CF, #4CAF50, #3F51B5);
+  background-size: 400%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: rainbow 5s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0%; }
+  100% { background-position: 100%; }
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.nav-links .dropdown {
+  position: relative;
+}
+
+.nav-links .dropdown > a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background-color: black;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover {
+  background-color: #e5533c;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+#searchInput {
+  padding: 6px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 5px;
+  font-size: 1rem;
+}
+
+#searchBtn {
+  background: #FF6347;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+#searchBtn:hover {
+  background: #e5533c;
+}
+
+/* Favorites Icon */
+.favorites-icon {
+  margin-left: 15px;
+  font-size: 1.4rem;
+}
+
+.navbar-heart {
+  color: #f44336;
+  font-size: 1.6rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+}
+
+/* Toggle Button (for small screens) */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+/* Side Navbar */
+.side-navbar {
+  position: fixed;
+  top: 0;
+  left: -220px; /* negative value should match the new width + padding if needed */
+  width: 200px;  /* reduced from 260px */
+  height: 100%;
+  background-color: #0a192f;
+  color: white;
+  overflow-y: auto;
+  padding: 20px;
+  z-index: 999;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+}
+
+
+.side-navbar.show-sidebar {
+  left: 0;
+}
+
+.side-dropdown {
+  margin-bottom: 20px;
+}
+
+.side-dropdown button {
+  background: none;
+  border: none;
+  color:#f44336;
+  font-size: 18px;
+  width: 100%;
+  text-align: left;
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.side-dropdown-content {
+  display: none;
+  flex-direction: column;
+  padding-left: 10px;
+  margin-top: 5px;
+}
+
+.side-dropdown-content a {
+  color: white;
+  padding: 5px 0;
+  display: block;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.side-dropdown-content a:hover {
+  color:#f44336;
+}
+
+.side-dropdown button::after {
+  content: '▼';
+  float: right;
+  font-size: 12px;
+  transition: transform 0.3s;
+}
+
+.side-dropdown.active button::after {
+  transform: rotate(180deg);
+}
+
+.side-dropdown.active .side-dropdown-content {
+  display: flex;
+}
+
+/* Hero Section */
+.hero {
+  margin-top: 60px;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #e5533c, #0a192f);
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Results Grid */
+#results {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Recipe Card */
+.recipe {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.recipe:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px #FF6347;
+}
+
+.recipe img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-bottom: 3px solid #FF6347;
+  border-radius: 12px 12px 0 0;
+  filter: contrast(105%) brightness(105%);
+  height: 270px;
+}
+
+.recipe .content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.recipe .content h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: black;
+}
+
+.recipe .buttons {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe .content .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  height: auto;
+}
+
+.know-more-btn,
+.add-btn {
+  min-width: 150px;
+  font-weight: 600;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: #FF6347;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.know-more-btn:hover,
+.add-btn:hover {
+  background-color: #e5533c;
+}
+
+.favorite-btn {
+  background: transparent;
+  border: 2px solid #FF6347;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.favorite-btn i {
+  color: #FF6347;
+  transition: color 0.3s;
+}
+
+.favorite-btn.favorited {
+  background: #FF6347;
+}
+
+.favorite-btn.favorited i {
+  color: white;
+}
+
+/* Detail Modal */
+.recipe-details-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 9999;
+  display: none;
+}
+
+.recipe-details-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.recipe-details-box .back-btn {
+  display: inline-block;
+  background: #FF6347;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.recipe-details-box .back-btn:hover {
+  background: #e5533c;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .toggle-btn {
+    display: block;
+  }
+
+  #results {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    font-size: 1.5rem;
+  }
+
+  #results {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-details-box {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .side-navbar {
+    top: 50px;
+    width: 100%;
+    height: calc(100vh - 50px);
+    background: black;
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+    overflow-y: auto;
+    z-index: 1100;
+  }
+
+  .side-navbar.show-sidebar {
+    display: flex !important;
+  }
+
+  .side-navbar a {
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    margin-bottom: 5px;
+    width: 100%;
+    border-bottom: 1px solid #444;
+  }
+
+  .toggle-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-navbar {
+    padding: 8px 15px;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+
+
+
+
+/* Modal wrapper styling */
+#recipeModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* default hidden */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7); /* dark overlay */
+  z-index: 1000;
+  overflow: auto;
+}
+
+/* Scrollable modal card in the center */
+#modalBody {
+  background-color: #ffffff;
+  color: #000;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Optional: Close Button styling */
+#modalBody button {
+  background-color:#f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar styling (optional) */
+#modalBody::-webkit-scrollbar {
+  width: 8px;
+}
+
+#modalBody::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+
+#modalBody::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+
+#modalBody::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+
+
+
+
+
+
+.favorite-btn {
+  background-color:#f44336;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+.favorite-btn:hover {
+  background-color:#f44336;
+}
+
+
+#favoritesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center; /* Center the cards */
+}
+
+#favoritesContainer .recipe {
+  flex: 1 1 300px; /* Minimum width of 300px, grows as space allows */
+  max-width: 320px;
+}
+
+
+
+
+
+
+

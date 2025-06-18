@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Recipe Website</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="index.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="main-navbar">
+    <button class="toggle-btn" onclick="document.querySelector('.side-navbar').classList.toggle('show-sidebar')">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="logo">Food Recipes</div>
+
+    <nav class="nav-links">
+      <!-- Dropdowns -->
+      <div class="dropdown">
+        <a href="#">Recipes</a>
+        <div class="dropdown-content">
+          <a href="#" data-search="Breakfast">Breakfast</a>
+          <a href="#" data-search="Lunch">Lunch</a>
+          <a href="#" data-search="Dinner">Dinner</a>
+          <a href="#" data-search="Drinks">Drinks</a>
+          <a href="#" data-search="Desserts">Desserts</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Popular</a>
+        <div class="dropdown-content">
+          <a href="#" data-search="Trending Now">Trending Now</a>
+          <a href="#" data-search="Chili">Chili</a>
+          <a href="#" data-search="Pasta">Pasta</a>
+          <a href="#" data-search="Soup">Soup Recipes</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Meat & Seafood</a>
+        <div class="dropdown-content">
+          <a href="#" data-search="Chicken">Chicken</a>
+          <a href="#" data-search="Ground Beef">Ground Beef</a>
+          <a href="#" data-search="Shrimp">Shrimp</a>
+          <a href="#" data-search="Salmon">Salmon Recipes</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Healthy & Diet</a>
+        <div class="dropdown-content">
+          <a href="#" data-search="Keto">Keto</a>
+          <a href="#" data-search="Vegan">Vegan</a>
+          <a href="#" data-search="Vegetarian">Vegetarian</a>
+          <a href="#" data-search="Healthy">Healthy Recipes</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Cuisine</a>
+        <div class="dropdown-content">
+          <a href="#" data-search="Indian">Indian</a>
+          <a href="#" data-search="Italian">Italian</a>
+          <a href="#" data-search="Mexican">Mexican</a>
+          <a href="#" data-search="Thai">Thai</a>
+          <a href="#" data-search="French">French</a>
+          <a href="#" data-search="Korean">Korean</a>
+          <a href="#" data-search="Chinese">Chinese</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">Seasonal</a>
+        <div class="dropdown-content">
+          <a href="#" data-search="Spring">Spring</a>
+          <a href="#" data-search="Summer">Summer</a>
+          <a href="#" data-search="Winter">Winter</a>
+          <a href="#" data-search="Fall">Fall</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search recipes...">
+      <button id="searchBtn"><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="favorites-icon">
+      <button class="navbar-heart" style="color:red;">&#10084</button>
+    </div>
+  </header>
+
+  <aside class="side-navbar">
+  <div class="side-dropdown">
+    <button>Recipes</button>
+    <div class="side-dropdown-content">
+      <a href="#" data-search="Breakfast">Breakfast</a>
+      <a href="#" data-search="Lunch">Lunch</a>
+      <a href="#" data-search="Dinner">Dinner</a>
+      <a href="#" data-search="Drinks">Drinks</a>
+      <a href="#" data-search="Desserts">Desserts</a>
+    </div>
+  </div>
+
+  <div class="side-dropdown">
+    <button>Popular</button>
+    <div class="side-dropdown-content">
+      <a href="#" data-search="Trending Now">Trending Now</a>
+      <a href="#" data-search="Chili">Chili</a>
+      <a href="#" data-search="Pasta">Pasta</a>
+      <a href="#" data-search="Soup">Soup Recipes</a>
+    </div>
+  </div>
+
+  <div class="side-dropdown">
+    <button>Meat & Seafood</button>
+    <div class="side-dropdown-content">
+      <a href="#" data-search="Chicken">Chicken</a>
+      <a href="#" data-search="Ground Beef">Ground Beef</a>
+      <a href="#" data-search="Shrimp">Shrimp</a>
+      <a href="#" data-search="Salmon">Salmon Recipes</a>
+    </div>
+  </div>
+
+  <div class="side-dropdown">
+    <button>Healthy & Diet</button>
+    <div class="side-dropdown-content">
+      <a href="#" data-search="Keto">Keto</a>
+      <a href="#" data-search="Vegan">Vegan</a>
+      <a href="#" data-search="Vegetarian">Vegetarian</a>
+      <a href="#" data-search="Healthy">Healthy Recipes</a>
+    </div>
+  </div>
+
+  <div class="side-dropdown">
+    <button>Cuisine</button>
+    <div class="side-dropdown-content">
+      <a href="#" data-search="Indian">Indian</a>
+      <a href="#" data-search="Italian">Italian</a>
+      <a href="#" data-search="Mexican">Mexican</a>
+      <a href="#" data-search="Thai">Thai</a>
+      <a href="#" data-search="French">French</a>
+      <a href="#" data-search="Korean">Korean</a>
+      <a href="#" data-search="Chinese">Chinese</a>
+    </div>
+  </div>
+
+  <div class="side-dropdown">
+    <button>Seasonal</button>
+    <div class="side-dropdown-content">
+      <a href="#" data-search="Spring">Spring</a>
+      <a href="#" data-search="Summer">Summer</a>
+      <a href="#" data-search="Winter">Winter</a>
+      <a href="#" data-search="Fall">Fall</a>
+    </div>
+  </div>
+</aside>
+
+
+  <main>
+    <section class="hero">Discover delicious recipes tailored to your taste and lifestyle.</section>
+    <section id="results"></section>
+
+    <!-- Favorites Section (Initially Hidden) -->
+   <!-- Favorites Section (Initially Hidden) -->
+<section id="favoritesSection" style="display: none; padding: 60px 20px 20px 20px; position: relative; min-height: 100vh; background-color: black;">
+
+  <!-- Close Button -->
+  <button id="closeFavorites" aria-label="Close favorites" 
+          style="
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            color: #ff4d4d; 
+            border: none; 
+            
+            font-size: 22px; 
+            border-radius: 40%; 
+            width: 35px; 
+            height: 35px; 
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+          ">✖</button>
+
+  <!-- Grid of Favorite Cards -->
+  <div id="favoritesContainer" class="recipe-grid">
+
+  </div>
+
+</section>
+
+<!-- Modal for Recipe Details -->
+<div id="recipeModal" style="display: none; position: fixed; top: 40px;  left: 0;  width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8); z-index: 999; justify-content: center; align-items: center; padding: 20px;">
+  <div id="modalContent" style="max-width: 700px; width: 100%; padding: 20px; border-radius: 10px; position: relative;">
+    <button id="closeModal"></button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+
+
+
+  </main>
+</body>
+
+</html>
