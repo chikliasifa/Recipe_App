@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Recipe Hub - Discover Amazing Recipes</title>
+  <meta name="description" content="Discover delicious recipes from around the world. Search, save favorites, and explore various cuisines.">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="index.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading delicious recipes...</p>
+  </div>
+
+  <header class="main-navbar">
+    <button class="toggle-btn" onclick="document.querySelector('.side-navbar').classList.toggle('show-sidebar')" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+
+    <div class="logo">
+      <i class="fas fa-utensils"></i>
+      Food Recipe
+    </div>
+
+    <nav class="nav-links" role="navigation">
+      <!-- Dropdowns -->
+      <div class="dropdown">
+        <a href="#" role="button" aria-haspopup="true">Recipes <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-content" role="menu">
+          <a href="#" data-search="Breakfast" role="menuitem">🍳 Breakfast</a>
+          <a href="#" data-search="Lunch" role="menuitem">🥗 Lunch</a>
+          <a href="#" data-search="Dinner" role="menuitem">🍽️ Dinner</a>
+          <a href="#" data-search="Drinks" role="menuitem">🥤 Drinks</a>
+          <a href="#" data-search="Desserts" role="menuitem">🍰 Desserts</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" role="button" aria-haspopup="true">Popular <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-content" role="menu">
+          <a href="#" data-search="Trending Now" role="menuitem">🔥 Trending Now</a>
+          <a href="#" data-search="Chili" role="menuitem">🌶️ Chili</a>
+          <a href="#" data-search="Pasta" role="menuitem">🍝 Pasta</a>
+          <a href="#" data-search="Soup" role="menuitem">🍲 Soup Recipes</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" role="button" aria-haspopup="true">Meat & Seafood <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-content" role="menu">
+          <a href="#" data-search="Chicken" role="menuitem">🐔 Chicken</a>
+          <a href="#" data-search="Ground Beef" role="menuitem">🥩 Ground Beef</a>
+          <a href="#" data-search="Shrimp" role="menuitem">🦐 Shrimp</a>
+          <a href="#" data-search="Salmon" role="menuitem">🐟 Salmon</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" role="button" aria-haspopup="true">Healthy & Diet <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-content" role="menu">
+          <a href="#" data-search="Keto" role="menuitem">🥑 Keto</a>
+          <a href="#" data-search="Vegan" role="menuitem">🌱 Vegan</a>
+          <a href="#" data-search="Vegetarian" role="menuitem">🥬 Vegetarian</a>
+          <a href="#" data-search="Healthy" role="menuitem">💚 Healthy</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" role="button" aria-haspopup="true">Cuisine <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-content" role="menu">
+          <a href="#" data-search="Indian" role="menuitem">🇮🇳 Indian</a>
+          <a href="#" data-search="Italian" role="menuitem">🇮🇹 Italian</a>
+          <a href="#" data-search="Mexican" role="menuitem">🇲🇽 Mexican</a>
+          <a href="#" data-search="Thai" role="menuitem">🇹🇭 Thai</a>
+          <a href="#" data-search="French" role="menuitem">🇫🇷 French</a>
+          <a href="#" data-search="Korean" role="menuitem">🇰🇷 Korean</a>
+          <a href="#" data-search="Chinese" role="menuitem">🇨🇳 Chinese</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" role="button" aria-haspopup="true">Seasonal <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-content" role="menu">
+          <a href="#" data-search="Spring" role="menuitem">🌸 Spring</a>
+          <a href="#" data-search="Summer" role="menuitem">☀️ Summer</a>
+          <a href="#" data-search="Winter" role="menuitem">❄️ Winter</a>
+          <a href="#" data-search="Fall" role="menuitem">🍂 Fall</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search recipes..." aria-label="Search recipes">
+      <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="favorites-icon">
+      <button class="navbar-heart" aria-label="View favorites">
+        <i class="fas fa-heart"></i>
+        <span id="favoritesCount" class="favorites-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Side Navigation -->
+  <aside class="side-navbar" role="navigation">
+    <div class="side-nav-header">
+      <h3>Menu</h3>
+      <button class="close-sidebar" onclick="document.querySelector('.side-navbar').classList.remove('show-sidebar')" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="side-dropdown">
+      <button aria-expanded="false">
+        <i class="fas fa-utensils"></i> Recipes
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="side-dropdown-content">
+        <a href="#" data-search="Breakfast">🍳 Breakfast</a>
+        <a href="#" data-search="Lunch">🥗 Lunch</a>
+        <a href="#" data-search="Dinner">🍽️ Dinner</a>
+        <a href="#" data-search="Drinks">🥤 Drinks</a>
+        <a href="#" data-search="Desserts">🍰 Desserts</a>
+      </div>
+    </div>
+
+    <div class="side-dropdown">
+      <button aria-expanded="false">
+        <i class="fas fa-fire"></i> Popular
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="side-dropdown-content">
+        <a href="#" data-search="Trending Now">🔥 Trending Now</a>
+        <a href="#" data-search="Chili">🌶️ Chili</a>
+        <a href="#" data-search="Pasta">🍝 Pasta</a>
+        <a href="#" data-search="Soup">🍲 Soup Recipes</a>
+      </div>
+    </div>
+
+    <div class="side-dropdown">
+      <button aria-expanded="false">
+        <i class="fas fa-drumstick-bite"></i> Meat & Seafood
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="side-dropdown-content">
+        <a href="#" data-search="Chicken">🐔 Chicken</a>
+        <a href="#" data-search="Ground Beef">🥩 Ground Beef</a>
+        <a href="#" data-search="Shrimp">🦐 Shrimp</a>
+        <a href="#" data-search="Salmon">🐟 Salmon</a>
+      </div>
+    </div>
+
+    <div class="side-dropdown">
+      <button aria-expanded="false">
+        <i class="fas fa-leaf"></i> Healthy & Diet
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="side-dropdown-content">
+        <a href="#" data-search="Keto">🥑 Keto</a>
+        <a href="#" data-search="Vegan">🌱 Vegan</a>
+        <a href="#" data-search="Vegetarian">🥬 Vegetarian</a>
+        <a href="#" data-search="Healthy">💚 Healthy</a>
+      </div>
+    </div>
+
+    <div class="side-dropdown">
+      <button aria-expanded="false">
+        <i class="fas fa-globe"></i> Cuisine
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="side-dropdown-content">
+        <a href="#" data-search="Indian">🇮🇳 Indian</a>
+        <a href="#" data-search="Italian">🇮🇹 Italian</a>
+        <a href="#" data-search="Mexican">🇲🇽 Mexican</a>
+        <a href="#" data-search="Thai">🇹🇭 Thai</a>
+        <a href="#" data-search="French">🇫🇷 French</a>
+        <a href="#" data-search="Korean">🇰🇷 Korean</a>
+        <a href="#" data-search="Chinese">🇨🇳 Chinese</a>
+      </div>
+    </div>
+
+    <div class="side-dropdown">
+      <button aria-expanded="false">
+        <i class="fas fa-calendar-alt"></i> Seasonal
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="side-dropdown-content">
+        <a href="#" data-search="Spring">🌸 Spring</a>
+        <a href="#" data-search="Summer">☀️ Summer</a>
+        <a href="#" data-search="Winter">❄️ Winter</a>
+        <a href="#" data-search="Fall">🍂 Fall</a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content" style="padding-top: 50px;">
+        <h1>Discover Amazing Recipes</h1>
+        <p>Find delicious recipes tailored to your taste and lifestyle</p>
+      </div>
+    </section>
+
+    <!-- Recipe Results Section -->
+    <section id="results" class="recipe-grid"></section>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="error-message" style="display: none;">
+      <i class="fas fa-exclamation-triangle"></i>
+      <p>Something went wrong. Please try again later.</p>
+      <button onclick="this.parentElement.style.display = 'none'">Dismiss</button>
+    </div>
+
+    <!-- Favorites Section -->
+    <section id="favoritesSection" class="favorites-section">
+      <div class="favorites-header">
+        <h2><i class="fas fa-heart"></i> My Favorite Recipes</h2>
+        <button id="closeFavorites" class="close-btn" aria-label="Close favorites">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="favoritesContainer" class="recipe-grid"></div>
+    </section>
+  </main>
+
+  <!-- Recipe Detail Modal -->
+  <div id="recipeModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Recipe Details</h2>
+        <button id="closeModal" class="close-btn" aria-label="Close modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</body>
+
+</html>
